@@ -1,0 +1,44 @@
+<div class="container col-12 col-md-10 col-lg-5 mx-auto mt-5">
+  <div class="row">
+    <div class="col-12 col-md-9 mx-auto">
+      <h2 class="text-center">{{toggle ? "SignUp" : "LogIn"}}</h2>
+      <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <div class="my-4">
+          <div class="form-group d-flex justify-content-between" *ngIf="toggle">
+            <label for="email" class="text-nowrap col-5">Email</label>
+            <input type="email" id="email" class="form-control col-7" ngModel name="email" required>
+          </div>
+          <div class="form-group d-flex justify-content-between">
+            <label for="username" class="text-nowrap col-5">Username</label>
+            <input type="text" id="username" class="form-control col-7" ngModel name="username" required>
+          </div>
+          <div class="form-group d-flex justify-content-between">
+            <label for="password" class="text-nowrap col-5">Password</label>
+            <input type="password" id="password" class="form-control col-7" ngModel name="password" required>
+          </div>
+          <div class="form-group d-flex justify-content-start" *ngIf="toggle">
+            <label for="active" class="text-nowrap col-5">Active</label>
+            <input type="checkbox" id="active" class="mt-2" ngModel name="active">
+          </div>
+        </div>
+          <div class="d-flex justify-content-between form-group pl-3">
+            <button class="btn btn-primary form-control col-5" type="submit">{{toggle ? "Signup" : "Login" }}</button>
+            <button class="btn btn-outline-primary form-control col-5" type="button" (click)="signupOrLogin()">{{toggle ? "Login" : "Signup" }}</button>
+          </div>
+       </form>
+      </div>
+    </div>
+    <hr>
+    <div class="row" *ngIf="login || signup">
+      <div class="col-9 mx-auto">
+        <h3 class="text-center success" *ngIf="login">Successfully Logged In</h3>
+        <h3 class="text-center success" *ngIf="signup">Successfully Signed Up </h3>
+      </div>
+    </div>
+    <div class="row" *ngIf="login == false || signup == false">
+      <div class="col-9 mx-auto">
+        <h3 class="text-center failed" *ngIf="login == false">Failed to login</h3>
+        <h3 class="text-center failed" *ngIf="signup == false">Failed to signup</h3>
+      </div>
+    </div>
+  </div>
